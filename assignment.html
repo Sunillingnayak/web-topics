@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: grey;
+        }
+        .mainContainer{
+           height: 80%;
+           width: 100%;
+        }
+       
+        #display{
+            display: flex;
+            padding: 16px;
+            text-align: center;
+            font-size: 20px;
+            text-align: center;
+            justify-content: space-around;
+            background-color: rgba(172, 255, 47, 0.445);   
+        }
+        .heading{
+            background-color: aqua;
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;   
+        }
+        #searchType{
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin: 8px;
+            color:  black;
+            transition: 1s;
+        }
+        #searchType:hover{
+            background-color:orange;
+        }
+        #searchlabel{
+            font-size: 20px;
+            padding: 10px;
+            text-align: center;
+            margin: 8px;
+            color:  black;
+        }
+        #tabledisplay{
+            border: 1px solid black;
+            width: 80%;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <div class="mainContainer">
+        <div class="container">
+       <div class="heading"><header >Student Details</header></div>
+        <div>
+            <label for="searchType" id="searchlabel" >Search:</label>
+            <input type="search" placeholder="Search" value="" id="searchType" onchange="submit(this.value)" > 
+        </div>
+       </div>
+</div>
+<div id="displayContainer">
+
+</div>
+
+
+   
+
+
+    <script>
+  const Students=[{
+    id:1,
+    name:'Sunil',
+    fatherName:'shashikanth',
+    motherName:'shivkantamma',
+    rollno:12,
+    Section:'A'
+  },{
+    id:2,
+    name:'Sachin',
+    fatherName:'shashikanth',
+    motherName:'shivkantamma',
+    rollno:10,
+    Section:'B'
+  },{
+    id:3,
+    name:'sushma',
+    fatherName:'shashikanth',
+    motherName:'shivkantamma',
+    rollno:11,
+    Section:'C'
+  },{
+    id:4,
+    name:'shanmuk',
+    fatherName:'shanmuk',
+    motherName:'negalur',
+    rollno:13,
+    Section:'A'
+  },{
+    id:5,
+    name:'vinay',
+    fatherName:'Ramesh',
+    motherName:'gangamma',
+    rollno:15,
+    Section:'C'
+  }]
+
+
+
+   
+    function submit(){
+    const container=document.getElementById('displayContainer')
+    const searchtype=document.getElementById('searchType').value
+    if(document.getElementById('searchType').value!==""){
+    console.log(searchtype);
+    
+    const filterarray=Students.filter(item=> item.id == searchtype)
+    console.log(filterarray);
+
+
+    // var divison=document.createElement('div')
+    filterarray.map((item)=>{
+    container.innerHTML+=`
+    <div id=display>
+    <table id="tabledisplay"> 
+        <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>fatherName</th>
+    <th>motherName</th>
+    <th>RollNo</th>
+    <th>Section</th>
+    
+
+    
+    </tr>
+    <tr>
+    <td>${item.id}</td>
+    <td>${item.name}</td>
+    <td>${item.fatherName}</td>
+    <td>${item.motherName}</td>
+    <td>${item.rollno}</td>
+    <td>${item.Section}</td>
+    </tr>
+    </table>
+    </div>  `
+
+      
+      
+  }) }else{
+    container.innerHTML=''
+  }
+   }
+    </script>
+    
+</body>
+</html>
